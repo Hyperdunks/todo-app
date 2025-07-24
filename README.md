@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Running
 1. Clone and install dependencies.
 ```sh
-git clone [url]
+git clone https://github.com/Hyperdunks/todo-app.git
 cp .env.example .env
 npm install
 ```
@@ -22,6 +22,12 @@ npm install
 - express JS
 - jsonwebtoken
 
+### TODO
+- Build backend first
+- [ ] Skeleton
+- [ ] Schema with mongoose
+- [ ] routes for user and todos
+- [ ] 
 ## Available Scripts
 
 In the project directory, you can run:
