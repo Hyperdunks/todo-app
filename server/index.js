@@ -1,11 +1,15 @@
-require("dotenv").config({ path: "./../.env" });
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const mongoose = require("mongoose");
+const { userRouter } = require("./routes/user");
 const app = express();
 const port = process.env.PORT;
 
+app.use("/user", userRouter);
+
+// landing page
 app.get("/", (req, res) => {
-	console.log("Request received!");
+	console.log("Request on / endpoint!");
 	res.send("Hello from the backend!");
 });
 
