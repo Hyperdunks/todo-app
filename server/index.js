@@ -3,15 +3,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { userRouter } = require("./routes/user");
 const app = express();
+app.use(express.json());
 const port = process.env.PORT;
-console.log(process.env.PORT);
 
 app.use("/user", userRouter);
 
 // landing page
 app.get("/", (req, res) => {
 	console.log("Request on / endpoint!");
-	res.send("Hello from the backend!");
+	res.json({ msg: "Hello from the backend!" });
 });
 
 async function main() {
