@@ -1,9 +1,10 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const { userRouter } = require("./routes/user");
 const app = express();
 const port = process.env.PORT;
+console.log(process.env.PORT);
 
 app.use("/user", userRouter);
 

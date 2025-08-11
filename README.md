@@ -28,6 +28,7 @@ npm install
 - [ ] Skeleton
 - [ ] Schema with mongoose
 - [ ] routes for user and todos
+- Sub optimal task to use react-hook-forms or formik (to optimize the re-renders while typing in forms)
 - [ ] Frontend
 ## Available Scripts
 
