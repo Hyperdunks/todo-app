@@ -26,14 +26,20 @@ userRouter.post("/signup", async function (req, res) {
 			});
 		}
 		const hashedPassword = await bcrypt.hash(password, 10);
-		await userModel.create({
+		const dbUser = await userModel.create({
 			email: email,
 			username: username,
 			password: hashedPassword,
 		});
 
+		const token = sign(
+			{ id: dbUser._id, username: dbUser.username },
+			JWT_USER_PASSWORD,
+		);
+
 		res.status(201).json({
 			message: "Signup successful",
+			token: token,
 		});
 	} catch (e) {
 		console.error("Error during signup:", e);
@@ -57,10 +63,8 @@ userRouter.post("/signin", async function (req, res) {
 			username: username,
 		});
 
-		// Combine the user not found and wrong password cases to prevent username enumeration
 		if (!user) {
 			return res.status(401).json({
-				// 401 Unauthorized is more standard
 				message: "Invalid credentials",
 			});
 		}
@@ -73,11 +77,9 @@ userRouter.post("/signin", async function (req, res) {
 			});
 		}
 
-		// If credentials are correct, create and send token
 		const token = sign(
-			{ id: user._id, username: user.username }, // Include more user info if needed
+			{ id: user._id, username: user.username },
 			JWT_USER_PASSWORD,
-			{ expiresIn: "1h" }, // Good practice to set an expiration
 		);
 
 		res.json({
